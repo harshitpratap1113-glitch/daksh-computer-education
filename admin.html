@@ -905,14 +905,21 @@
      * Master Security Passcodes & Synchronized State Engine
      */
 
-    const MASTER_KEYS = [
-      'VOXAI-GODMODE-MASTER-KEY-2026-X99-CRYPT-SHIELD-OMEGA',
-      'DAKSH-GODMODE-MASTER-KEY-2026-X99-SHIELD',
-      'Daksh#Admin2026!Secured',
-      'VoxAI#Admin2026!Secured',
-      'Daksh#Master2026!Lock',
-      '889926'
+    const MASTER_HASHES = [
+      "052504561bb2f4eb95116a5e5414068cf112474fe5fc71af123e7aefa933f901",
+      "38e3bdaa12c7d737b88a5de2c0742b73339fea23b5e1eef9c59b06a793d63594",
+      "f0af931105d39de8201f457d2fc8ce744a7e4fc2338961b6137e8f854b5ae9e5",
+      "63280d2349935a5433df8da47d36d178b6da948873d3e6700a4a0579cf661d9f",
+      "702dde5708fac7824229f26b5961c72e83299dba353f9e2515e5c573010bc85a",
+      "f0c47127edb72a44cbebb5981d7714562e6dc9557890aa6d9536288d99b123a7"
     ];
+
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
 
     let currentPinInput = "";
     let isKeypadMode = false;
@@ -974,7 +981,7 @@
     }
 
     // 4. Validate Credentials
-    function validateAndLogin(input) {
+    async function validateAndLogin(input) {
       const errorMsg = document.getElementById('authErrorMsg');
 
       if (lockoutTimer) {
@@ -983,7 +990,15 @@
         return;
       }
 
-      if (MASTER_KEYS.includes(input.trim())) {
+      if (!input || !input.trim()) {
+        errorMsg.textContent = '⚠️ Please enter passcode or PIN.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      const inputHash = await sha256(input.trim());
+
+      if (MASTER_HASHES.includes(inputHash)) {
         // Success for this active view
         currentAuthPasscode = input.trim();
         failedAttempts = 0;
@@ -994,7 +1009,7 @@
       } else {
         // Failed attempt
         failedAttempts++;
-        errorMsg.textContent = `⚠️ Invalid credentials. (Attempt ${failedAttempts} of 5)`;
+        errorMsg.textContent = `⚠️ Invalid credentials. Access denied. (${failedAttempts}/5)`;
         errorMsg.style.display = 'block';
 
         if (failedAttempts >= 5) {
