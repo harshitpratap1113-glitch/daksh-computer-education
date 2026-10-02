@@ -566,11 +566,46 @@ document.querySelectorAll('[data-syllabus-course]').forEach(btn => {
     if (adminBar) adminBar.style.display = 'none';
   };
 
-  // Keyboard shortcut: Ctrl + Shift + A opens Admin Panel
+  // 12. SECRET NAME & KEYBOARD CHEATCODE ENGINE
+  // Triggers:
+  // 1. Hotkeys: Ctrl + Shift + H (Harshit) | Ctrl + Shift + A | Ctrl + Shift + D (Daksh)
+  // 2. Typing Name Cheatcode anywhere on screen: "harshit", "harshitpratap", "daksh", "admin"
+  let secretKeyBuffer = "";
+  const SECRET_NAME_CODES = ["harshit", "harshitpratap", "daksh", "admin", "voxai"];
+
   window.addEventListener('keydown', (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
-      e.preventDefault();
-      window.location.href = 'admin.html';
+    // 1. Direct Hotkey Combos: Ctrl + Shift + (H / A / D)
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+      const key = e.key ? e.key.toLowerCase() : '';
+      if (key === 'h' || key === 'a' || key === 'd') {
+        e.preventDefault();
+        showToast('⚡ Admin Vault Activated: Welcome Harshit', 'success');
+        setTimeout(() => { window.location.href = 'admin.html'; }, 400);
+        return;
+      }
+    }
+
+    // 2. Secret Name Sequence Buffer (Typing "harshit" or "daksh" anywhere on the webpage)
+    if (e.key && e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+      const activeEl = document.activeElement;
+      // Exclude only the live typing speed test input to avoid interfering with tests
+      if (activeEl && (activeEl.id === 'typingInput')) {
+        return;
+      }
+
+      secretKeyBuffer += e.key.toLowerCase();
+      if (secretKeyBuffer.length > 25) {
+        secretKeyBuffer = secretKeyBuffer.slice(-25);
+      }
+
+      for (const code of SECRET_NAME_CODES) {
+        if (secretKeyBuffer.endsWith(code)) {
+          secretKeyBuffer = "";
+          showToast(`⚡ Master Cheatcode [${code.toUpperCase()}] Verified: Opening Admin Vault...`, 'success');
+          setTimeout(() => { window.location.href = 'admin.html'; }, 500);
+          break;
+        }
+      }
     }
   });
 
