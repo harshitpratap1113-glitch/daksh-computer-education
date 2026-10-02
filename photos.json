@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "src": "photos/daksh-photo-001_9c96f592.jpg",
+    "category": "students",
+    "categoryLabel": "Student Batch",
+    "title": "Daksh Institute Student Batch & Alumni",
+    "titleHi": "दक्ष कंप्यूटर एजुकेशन — सफल छात्र बैच एवं विदाई समारोह",
+    "desc": "Our enthusiastic students during successful course completion and celebration at Thatipur campus.",
+    "badge": "10,000+ Alumni"
+  },
+  {
+    "id": 2,
+    "src": "photos/daksh-photo-002_145ff648.jpg",
+    "category": "labs",
+    "categoryLabel": "Practical Lab",
+    "title": "1-on-1 Faculty Mentorship & Lab Guidance",
+    "titleHi": "व्यक्तिगत शिक्षक मार्गदर्शन एवं हैंड्स-ऑन कंप्यूटर ट्रेनिंग",
+    "desc": "Dedicated instructor guiding students through practical accounting software and programming logic.",
+    "badge": "1:1 Guidance"
+  },
+  {
+    "id": 3,
+    "src": "photos/daksh-photo-003_ccbedb54.jpg",
+    "category": "labs",
+    "categoryLabel": "Computer Lab",
+    "title": "Modern Air-Conditioned Computer Lab",
+    "titleHi": "पूर्णतः वातानुकूलित आधुनिक कंप्यूटर लैब",
+    "desc": "High-speed desktop workstations equipped with latest software for DCA, PGDCA & Tally Prime.",
+    "badge": "AC & Wi-Fi Campus"
+  },
+  {
+    "id": 4,
+    "src": "photos/daksh-photo-004_1533d5e6.jpg",
+    "category": "typing",
+    "categoryLabel": "Typing Lab",
+    "title": "CPCT & Hindi/English Speed Typing Session",
+    "titleHi": "सीपीसीटी एवं हिंदी-अंग्रेजी स्पीड टाइपिंग बैच",
+    "desc": "Students practicing real-time timed typing tests to achieve 45+ WPM benchmark for MP Govt exams.",
+    "badge": "45+ WPM Target"
+  },
+  {
+    "id": 5,
+    "src": "photos/daksh-photo-005_26c40ca7.jpg",
+    "category": "labs",
+    "categoryLabel": "Practical Session",
+    "title": "Hands-On Software Training Practice",
+    "titleHi": "व्यावहारिक सॉफ्टवेयर प्रशिक्षण एवं लाइव प्रोजेक्ट्स",
+    "desc": "Students mastering MS Office Suite, Advanced Excel, and financial data management.",
+    "badge": "100% Practical"
+  },
+  {
+    "id": 6,
+    "src": "photos/daksh-photo-006_b6a762d5.jpg",
+    "category": "students",
+    "categoryLabel": "Classroom",
+    "title": "Interactive Learning Environment",
+    "titleHi": "सक्रिय शिक्षण माहौल और समूह चर्चा",
+    "desc": "Engaging classroom setup designed for maximum focus, technical clarity and peer collaboration.",
+    "badge": "Focus & Growth"
+  },
+  {
+    "id": 7,
+    "src": "photos/daksh-photo-007_8f634f05.jpg",
+    "category": "labs",
+    "categoryLabel": "Lab Work",
+    "title": "Individual Computer Terminal Allocation",
+    "titleHi": "प्रत्येक विद्यार्थी के लिए समर्पित कंप्यूटर सिस्टम",
+    "desc": "Ensuring every student gets uninterrupted 2 hours daily practical machine time.",
+    "badge": "Individual PC"
+  },
+  {
+    "id": 8,
+    "src": "photos/daksh-photo-008_3d3eded4.jpg",
+    "category": "labs",
+    "categoryLabel": "Daily Batches",
+    "title": "Morning & Evening Batch Practical Hours",
+    "titleHi": "सुबह एवं शाम के लचीले प्रैक्टिकल बैच",
+    "desc": "Convenient batch timings for college students and working professionals.",
+    "badge": "Flexible Timings"
+  },
+  {
+    "id": 9,
+    "src": "photos/daksh-photo-009_50bf3d29.jpg",
+    "category": "typing",
+    "categoryLabel": "Typing Practice",
+    "title": "Mangal / Krutidev Hindi Typing Lab",
+    "titleHi": "मंगल एवं कृतिदेव हिंदी टाइपिंग लैब",
+    "desc": "Focused typing exercises designed to clear MP High Court, Patwari & CPCT exam standards.",
+    "badge": "Govt. Exam Ready"
+  },
+  {
+    "id": 10,
+    "src": "photos/daksh-photo-010_99407a2b.jpg",
+    "category": "labs",
+    "categoryLabel": "Accounts Lab",
+    "title": "Tally Prime with GST Live Invoicing",
+    "titleHi": "टैली प्राइम विद जीएसटी लाइव बिलिंग अभ्यास",
+    "desc": "Comprehensive accounting training from voucher entry to balance sheet generation.",
+    "badge": "GST Certified"
+  },
+  {
+    "id": 11,
+    "src": "photos/daksh-photo-011_24ac59c2.jpg",
+    "category": "certificates",
+    "categoryLabel": "Accreditation",
+    "title": "Authorized Tally & Quality Training Partner",
+    "titleHi": "प्रमाणित ट्रेनिंग पार्टनर एवं संस्थान मान्यता",
+    "desc": "Recognized certification programs ensuring industry standard verification for all graduates.",
+    "badge": "Certified Institute"
+  },
+  {
+    "id": 12,
+    "src": "photos/daksh-photo-012_ddaa4278.jpg",
+    "category": "labs",
+    "categoryLabel": "Practical Lab",
+    "title": "Dedicated Doubt Clearing Sessions",
+    "titleHi": "दैनिक डाउट क्लीयरिंग और विशेष सहायता",
+    "desc": "Faculty providing instant assistance to solve programming and accounting queries.",
+    "badge": "Doubt Support"
+  },
+  {
+    "id": 13,
+    "src": "photos/daksh-photo-013_7d4c0bbb.jpg",
+    "category": "students",
+    "categoryLabel": "Student Life",
+    "title": "Skill Development & Career Building",
+    "titleHi": "कौशल विकास एवं उज्ज्वल भविष्य का निर्माण",
+    "desc": "Building strong foundational digital literacy for career-ready professionals.",
+    "badge": "Job Ready"
+  },
+  {
+    "id": 14,
+    "src": "photos/daksh-photo-014_8b18fd74.jpg",
+    "category": "labs",
+    "categoryLabel": "Computer Lab",
+    "title": "High-Speed Infrastructure & Networking",
+    "titleHi": "हाई-स्पीड इंटरनेट एवं आधुनिक कंप्यूटर इंफ्रास्ट्रक्चर",
+    "desc": "Fast optical fiber connectivity for online exam simulations and cloud tools.",
+    "badge": "High Speed"
+  },
+  {
+    "id": 15,
+    "src": "photos/daksh-photo-015_16bdfb90.jpg",
+    "category": "students",
+    "categoryLabel": "Classroom",
+    "title": "Interactive Theory & Concept Classes",
+    "titleHi": "रोचक थ्योरी कक्षाएं एवं बुनियादी समझ",
+    "desc": "Clear conceptual lectures before transitioning to hands-on computer lab practicals.",
+    "badge": "Concept First"
+  },
+  {
+    "id": 16,
+    "src": "photos/daksh-photo-016_c1d5a45a.jpg",
+    "category": "courses",
+    "categoryLabel": "Special Batches",
+    "title": "DCA & PGDCA Diploma Batches",
+    "titleHi": "डीसीए एवं पीजीडीसीए विश्वविद्यालय डिप्लोमा बैच",
+    "desc": "Recognized diploma programs affiliated with renowned universities for govt job eligibility.",
+    "badge": "University Diploma"
+  },
+  {
+    "id": 17,
+    "src": "photos/daksh-photo-017_48035d38.jpg",
+    "category": "labs",
+    "categoryLabel": "Practical Session",
+    "title": "Programming & Web Design Terminal",
+    "titleHi": "प्रोग्रामिंग एवं वेब डेवलपमेंट लैब",
+    "desc": "Students coding in C, C++, Python, HTML, CSS and JavaScript.",
+    "badge": "Coding Lab"
+  },
+  {
+    "id": 18,
+    "src": "photos/daksh-photo-018_544d9228.jpg",
+    "category": "labs",
+    "categoryLabel": "Computer Lab",
+    "title": "DTP & Graphic Designing Workstation",
+    "titleHi": "डीटीपी, फोटोशॉप एवं कोरलड्रा वर्कस्टेशन",
+    "desc": "Creative design training covering poster creation, banner editing and prepress layout.",
+    "badge": "Graphic Design"
+  },
+  {
+    "id": 19,
+    "src": "photos/daksh-photo-019_b8551814.jpg",
+    "category": "typing",
+    "categoryLabel": "Typing Batch",
+    "title": "Speed Typing Test Preparation",
+    "titleHi": "सरकारी नौकरियों हेतु स्पीड टाइपिंग टेस्ट तैयारी",
+    "desc": "Rigorous timed drills to enhance keystroke precision and reduce backspacing errors.",
+    "badge": "Precision Drills"
+  },
+  {
+    "id": 20,
+    "src": "photos/daksh-photo-020_6a98c6ca.jpg",
+    "category": "students",
+    "categoryLabel": "Celebration",
+    "title": "Annual Fest & Student Felicitation",
+    "titleHi": "वार्षिक उत्सव एवं प्रतिभाशाली छात्र सम्मान",
+    "desc": "Recognizing top performing students with certificates and appreciation awards.",
+    "badge": "Star Achievers"
+  },
+  {
+    "id": 21,
+    "src": "photos/daksh-photo-021_c0e8393c.jpg",
+    "category": "labs",
+    "categoryLabel": "Lab Overview",
+    "title": "Clean, Organized & Secure Learning Environment",
+    "titleHi": "सुरक्षित, व्यवस्थित एवं अनुशासित शिक्षण परिसर",
+    "desc": "CCTV monitored premises with full power backup and friendly atmosphere.",
+    "badge": "Secure Campus"
+  },
+  {
+    "id": 22,
+    "src": "photos/daksh-photo-022_56d0f978.jpg",
+    "category": "labs",
+    "categoryLabel": "Practical Lab",
+    "title": "Regular Mock Tests & Performance Reviews",
+    "titleHi": "साप्ताहिक मॉक टेस्ट एवं प्रगति समीक्षा",
+    "desc": "Weekly evaluations ensuring every student tracks their learning milestones effectively.",
+    "badge": "Weekly Tests"
+  },
+  {
+    "id": 23,
+    "src": "photos/daksh-photo-023_dbcc7e68.jpg",
+    "category": "courses",
+    "categoryLabel": "Course Poster",
+    "title": "Daksh Computer Education Official Course Chart",
+    "titleHi": "दक्ष कंप्यूटर एजुकेशन — मुख्य पाठ्यक्रम विवरण",
+    "desc": "Complete offering: DCA, PGDCA, CPCT, Tally Prime + GST, Typing, DTP, C/C++, Java & Python.",
+    "badge": "All Courses"
+  },
+  {
+    "id": 24,
+    "src": "photos/daksh-photo-024_e30357cf.jpg",
+    "category": "students",
+    "categoryLabel": "Campus",
+    "title": "Reception & Career Counseling Cell",
+    "titleHi": "करियर काउंसलिंग एवं प्रवेश परामर्श कक्ष",
+    "desc": "Expert guidance helping students select the most promising career course.",
+    "badge": "Free Counseling"
+  },
+  {
+    "id": 25,
+    "src": "photos/daksh-photo-025_f45145f2.jpg",
+    "category": "students",
+    "categoryLabel": "Administration",
+    "title": "Director & Administrative Desk",
+    "titleHi": "प्रबंधन एवं छात्र सहायता डेस्क",
+    "desc": "Direct oversight by experienced educators to ensure quality academic standards.",
+    "badge": "Leadership"
+  },
+  {
+    "id": 26,
+    "src": "photos/daksh-photo-026_e5704b2d.jpg",
+    "category": "courses",
+    "categoryLabel": "Digital Library",
+    "title": "Daksh Computer Education & Digital Library",
+    "titleHi": "दक्ष डिजिटल लाइब्रेरी एवं अध्ययन केंद्र",
+    "desc": "Peaceful study space equipped with e-books and high-speed Wi-Fi for competitive aspirants.",
+    "badge": "Library Facility"
+  },
+  {
+    "id": 27,
+    "src": "photos/daksh-photo-027_f0538dbf.jpg",
+    "category": "courses",
+    "categoryLabel": "Fee Schedule",
+    "title": "Transparent & Affordable Fee Structure",
+    "titleHi": "पारदर्शी, किफायती एवं आसान किस्तों में फीस सुविधा",
+    "desc": "High-value professional education made accessible with easy monthly installment plans.",
+    "badge": "Affordable Fee"
+  },
+  {
+    "id": 28,
+    "src": "photos/daksh-photo-028_558cf62b.jpg",
+    "category": "labs",
+    "categoryLabel": "Lab Interior",
+    "title": "Dedicated Terminal Setup for Practice",
+    "titleHi": "विशेष कंप्यूटर अभ्यास टर्मिनल",
+    "desc": "Ergonomic seating and well-ventilated computing halls for long practice sessions.",
+    "badge": "Ergonomic Lab"
+  },
+  {
+    "id": 29,
+    "src": "photos/daksh-photo-029_d4b66635.jpg",
+    "category": "labs",
+    "categoryLabel": "Lab Workstation",
+    "title": "Latest Hardware & Software Configurations",
+    "titleHi": "अपडेटेड हार्डवेयर एवं सॉफ्टवेयर कॉन्फ़िगरेशन",
+    "desc": "High performance computing terminals ensuring zero lag during complex tasks.",
+    "badge": "Modern Tech"
+  },
+  {
+    "id": 30,
+    "src": "photos/daksh-photo-030_79600618.jpg",
+    "category": "typing",
+    "categoryLabel": "Typing Hall",
+    "title": "Live Typing Examination Simulation",
+    "titleHi": "परीक्षा जैसा माहौल एवं टाइमर अभ्यास",
+    "desc": "Simulated typing test environments that prepare students for real CPCT exam pressure.",
+    "badge": "Exam Simulation"
+  },
+  {
+    "id": 31,
+    "src": "photos/daksh-photo-031_320b1054.jpg",
+    "category": "typing",
+    "categoryLabel": "Practical Hall",
+    "title": "Side-Angle View of Active Training Batch",
+    "titleHi": "सक्रिय टाइपिंग एवं कंप्यूटर प्रशिक्षण बैच",
+    "desc": "Full batch engaged in daily timed exercises under expert supervisor vigilance.",
+    "badge": "Batch Focus"
+  },
+  {
+    "id": 32,
+    "src": "photos/daksh-photo-032_f47e98af.jpg",
+    "category": "certificates",
+    "categoryLabel": "Insignia",
+    "title": "Daksh Computer Education Official Seal",
+    "titleHi": "दक्ष कंप्यूटर एजुकेशन — आधिकारिक पहचान चिन्ह",
+    "desc": "Representing 14+ years of trust and quality education in Thatipur, Gwalior.",
+    "badge": "14+ Years Trust"
+  },
+  {
+    "id": 33,
+    "src": "photos/daksh-photo-033_95525c6e.jpg",
+    "category": "typing",
+    "categoryLabel": "Speed Benchmark",
+    "title": "High Speed Typing Test Certification (45+ WPM)",
+    "titleHi": "45+ शब्द प्रति मिनट स्पीड टाइपिंग सर्टिफिकेशन",
+    "desc": "Proven track record of producing top scoring candidates in MP govt typing exams.",
+    "badge": "Top Results"
+  },
+  {
+    "id": 34,
+    "src": "photos/daksh-photo-034_f622280f.jpg",
+    "category": "courses",
+    "categoryLabel": "Master Prospectus",
+    "title": "Comprehensive Course Brochure & Curriculum",
+    "titleHi": "विस्तृत पाठ्यक्रम विवरणिका एवं प्रवेश जानकारी",
+    "desc": "Complete overview of all certificate and diploma courses available at Daksh Institute.",
+    "badge": "Prospectus"
+  },
+  {
+    "id": 35,
+    "src": "photos/daksh-photo-035_75738f1e.jpg",
+    "category": "courses",
+    "categoryLabel": "Fee Overview",
+    "title": "Course Duration & Fee Structure Chart",
+    "titleHi": "पाठ्यक्रम अवधि एवं फीस विवरण चार्ट",
+    "desc": "Detailed breakdown of 3-month, 6-month and 1-year diploma programs with installment options.",
+    "badge": "Fee Details"
+  }
+]

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f1d">
+  <title>Daksh Computer Education | Premier IT, CPCT Typing & Accounting Training Centre, Thatipur, Gwalior</title>
+  <meta name="description" content="Daksh Computer Education, Thatipur, Gwalior. 14+ Years of excellence in CPCT Typing, Tally Prime with GST, DCA, PGDCA, C/C++, Java, Python & Web Development. 100% Practical Labs & Job Assistance.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232563eb'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-weight='900' font-size='38' fill='%23f59e0b'%3ED%3C/text%3E%3C/svg%3E">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Open Graph Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Daksh Computer Education | Thatipur, Gwalior">
+  <meta property="og:description" content="Master CPCT Typing (45+ WPM), Tally Prime + GST, DCA, PGDCA & Programming with 100% Practical Lab Training.">
+  <meta property="og:image" content="photos/daksh-photo-001_9c96f592.jpg">
+</head>
+<body>
+
+  <!-- DYNAMIC 500 CRASH ERROR SCREEN OVERLAY (Activated when Admin toggles DISABLE) -->
+  <div id="siteCrashOverlay" style="display: none; position: fixed; inset: 0; z-index: 999999; background: #090d16; color: #f3f4f6; overflow-y: auto; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+    <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 16px;">
+      <div style="max-width: 780px; width: 100%; background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 40px; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.8);">
+        
+        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1f2937; padding-bottom: 24px; margin-bottom: 32px; flex-wrap: wrap; gap: 12px;">
+          <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 6px 14px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;">
+            <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display: inline-block; animation: crashPulse 1.5s infinite;"></span>
+            HTTP 500 : CRITICAL_SERVER_CRASH
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9ca3af;" id="crashTimeDisplay">UTC: 2026-10-02T15:00:00.000Z</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 12px; background: rgba(0, 0, 0, 0.35); border: 1px solid #1f2937; border-radius: 12px; padding: 24px 16px; margin-bottom: 32px; text-align: center;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+            <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">💻</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f3f4f6;">Your Client / Browser</div>
+            <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #10b981;">Working</div>
+          </div>
+          <div style="height: 2px; background: #10b981;"></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+            <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">🌐</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f3f4f6;">Edge Network (CDN)</div>
+            <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #10b981;">Working</div>
+          </div>
+          <div style="height: 2px; background: repeating-linear-gradient(90deg, #ef4444, #ef4444 4px, transparent 4px, transparent 8px);"></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+            <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #ef4444;">💥</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f3f4f6;">Host Server / Origin</div>
+            <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #ef4444;">Crashed / Offline</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 28px;">
+          <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #ffffff; display: flex; align-items: center; gap: 10px;">Server Infrastructure Crash (500)</h1>
+          <p style="color: #9ca3af; font-size: 14px; line-height: 1.6;">
+            The origin cluster node hosting <strong>Daksh Computer Education</strong> experienced a fatal core runtime crash (SIGSEGV / OOM) and stopped responding. The database daemon and application socket terminated unexpectedly.
+          </p>
+        </div>
+
+        <div style="background: #030712; border: 1px solid #1f2937; border-radius: 8px; padding: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.65; color: #e5e7eb; margin-bottom: 32px; overflow-x: auto;">
+          <div style="color: #6b7280; border-bottom: 1px solid #1f2937; padding-bottom: 8px; margin-bottom: 10px; display: flex; justify-content: space-between;">
+            <span>CORE DUMP & LOG DIAGNOSTICS</span>
+            <span>NODE: cluster-ap-south-gwl-01</span>
+          </div>
+          <div><span style="color: #9ca3af;">[00:52:14.102]</span> <span style="color: #fbbf24;">WARN:</span> Origin socket connection timeout on port 443 (host: daksh-primary-db)</div>
+          <div><span style="color: #9ca3af;">[00:52:15.849]</span> <span style="color: #f87171; font-weight: 600;">CRIT:</span> Fatal Error: Process terminated with exit code 137 (Fatal signal SIGKILL / Memory leak)</div>
+          <div><span style="color: #9ca3af;">[00:52:16.002]</span> <span style="color: #f87171; font-weight: 600;">FATAL:</span> Database connection pool exhausted: connection refused (127.0.0.1:5432)</div>
+          <div><span style="color: #9ca3af;">[00:52:16.140]</span> <span style="color: #fbbf24;">ALERT:</span> Automated failover attempt failed. Origin cluster state changed to: [DEAD / OFFLINE]</div>
+          <div><span style="color: #9ca3af;">[00:52:17.391]</span> <span style="color: #9ca3af;">INFO:</span> Incident reported to sysadmin team. Auto-recovery daemon initialized...</div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 20px; border-top: 1px solid #1f2937;">
+          <button onclick="retrySiteConnection()" id="retryBtn" style="background: #2563eb; color: white; border: none; padding: 10px 22px; font-size: 14px; font-weight: 600; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+            <span id="retryIcon">🔄</span> <span id="retryLabel">Retry Connection</span>
+          </button>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6b7280;">
+            <div>Ray ID: <span style="color:#9ca3af;">8f92a10b74ce918a</span></div>
+            <div>Error Code: <span style="color:#ef4444;">ERR_HOST_SERVER_CRASHED</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN OVERRIDE FLOATING BAR (Only shown when Admin is logged in or bypassing) -->
+  <div id="adminOverrideBar" style="display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 9999999; background: #0f172a; border-bottom: 1px solid #334155; color: #f8fafc; padding: 6px 16px; font-size: 12px; font-family: 'JetBrains Mono', monospace; display: none; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="color: #38bdf8;">🛡️ ADMIN SESSION ACTIVE</span>
+      <span style="color: #94a3b8;">|</span>
+      <span>Website Status: <strong id="adminBarStatus" style="color: #10b981;">LIVE</strong></span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="admin.html" style="color: #38bdf8; text-decoration: underline;">Open Admin Vault ⚙️</a>
+      <button onclick="dismissAdminBar()" style="background: none; border: none; color: #94a3b8; cursor: pointer;">✕</button>
+    </div>
+  </div>
+
+  <style>
+    @keyframes crashPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.85); }
+    }
+  </style>
+
+
+  <!-- Top Sticky Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#home" class="brand" aria-label="Daksh Computer Education Home">
+        <div class="brand-logo-badge">D</div>
+        <div class="brand-text">
+          <span class="brand-title">DAKSH</span>
+          <span class="brand-subtitle">Computer Education</span>
+        </div>
+      </a>
+
+      <!-- Desktop & Mobile Menu -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#courses" class="nav-link">Courses</a>
+        <a href="#typing-test" class="nav-link">Live Typing Test ⚡</a>
+        <a href="#calculator" class="nav-link">Fee Calculator</a>
+        <a href="#gallery" class="nav-link">Campus & Labs</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode">☀️</button>
+        <a href="#book-demo" class="btn btn-primary" style="display: none; @media(min-width: 640px){display: inline-flex;}">Book Free Demo</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="hero-glow"></div>
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span>🏆</span> #1 Computer & Typing Training Centre in Thatipur, Gwalior
+            </div>
+            <h1 class="hero-title">
+              Empowering 10,000+ Students with <span class="gradient-text">Practical IT, CPCT Typing & Tally</span> Skills.
+            </h1>
+            <p class="hero-lead">
+              ग्वालियर का सबसे प्रतिष्ठित संस्थान — 1:1 कंप्यूटर प्रैक्टिकल, अनुभवी फैकल्टी, और मध्य प्रदेश शासन की प्रतियोगी परीक्षाओं (CPCT/Patwari/High Court) हेतु 100% जॉब-ओरिएंटेड ट्रेनिंग।
+            </p>
+            <div class="hero-cta-group">
+              <a href="#book-demo" class="btn btn-secondary">🎯 Book 2-Day Free Demo</a>
+              <a href="#typing-test" class="btn btn-outline">⚡ Check Your Typing Speed</a>
+              <a href="https://wa.me/919770251146?text=Hi%20Daksh%20Education,%20I%20want%20to%20enquire%20about%20admission." target="_blank" rel="noopener" class="btn btn-whatsapp">💬 WhatsApp Us</a>
+            </div>
+            <div class="hero-stats-row">
+              <div class="hero-stat-item">
+                <strong>14+</strong>
+                <span>Years Legacy</span>
+              </div>
+              <div class="hero-stat-item">
+                <strong>10,000+</strong>
+                <span>Trained Alumni</span>
+              </div>
+              <div class="hero-stat-item">
+                <strong>4.8 ★</strong>
+                <span>Google Rating</span>
+              </div>
+              <div class="hero-stat-item">
+                <strong>100%</strong>
+                <span>Practical Lab</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-visual-card">
+              <img src="photos/daksh-photo-001_9c96f592.jpg" alt="Daksh Computer Education Students and Training Centre" fetchpriority="high">
+              <div class="hero-floating-badge">
+                <div class="floating-badge-icon">✓</div>
+                <div class="floating-badge-text">
+                  <strong>ISO 9001:2015 Certified</strong>
+                  <span>Govt. Recognized University Diplomas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE TYPING SPEED TEST INTERACTIVE TOOL SECTION -->
+    <section class="section" id="typing-test" style="background: rgba(0, 0, 0, 0.15);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Interactive Student Tool</div>
+          <h2 class="section-title">Test Your <span class="gradient-text">Typing Speed</span> Live (CPCT Exam Benchmark)</h2>
+          <p class="section-desc">
+            Try our real-time typing test tool below. Practice speed and accuracy drills right in your browser just like our daily lab sessions!
+          </p>
+        </div>
+
+        <div class="typing-test-wrapper">
+          <div class="typing-header-bar">
+            <div class="typing-controls-left">
+              <button class="typing-mode-btn active" data-type-lang="english">English (Standard)</button>
+              <button class="typing-mode-btn" data-type-lang="hindi">हिंदी (मंगल/कृतिदेव)</button>
+              <button class="btn btn-outline" id="typingResetBtn" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">🔄 Reset Passage</button>
+            </div>
+            <div class="typing-stats-display">
+              <div class="type-stat-pill">
+                <strong id="typingTimeVal">60s</strong>
+                <span>Time Left</span>
+              </div>
+              <div class="type-stat-pill">
+                <strong id="typingWpmVal">0</strong>
+                <span>Speed (WPM)</span>
+              </div>
+              <div class="type-stat-pill">
+                <strong id="typingAccVal">100%</strong>
+                <span>Accuracy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="typing-text-display" id="typingDisplay">
+            <!-- Rendered by app.js -->
+          </div>
+
+          <input type="text" class="typing-input-area" id="typingInput" placeholder="Start typing here... (timer starts automatically)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
+          <div class="typing-result-banner" id="typingResultBanner">
+            <div>
+              <h3 style="font-size: 1.3rem; margin-bottom: 0.35rem; color: #10b981;">🎉 Great Job! Test Completed</h3>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">
+                Your Speed: <strong id="resultWpm" style="color: #f59e0b;">0</strong> WPM | Accuracy: <strong id="resultAcc" style="color: #10b981;">100%</strong>
+              </p>
+            </div>
+            <a href="https://wa.me/919770251146?text=Hi%20Daksh%20Education,%20I%20completed%20the%20typing%20test%20on%20your%20website%20and%20want%20to%20join%20the%20CPCT%20Batch." target="_blank" rel="noopener" class="btn btn-secondary">
+              🚀 Join CPCT Speed Batch (45+ WPM Target)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST BADGES SECTION -->
+    <section class="section" style="padding: 3rem 0;">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="trust-icon">💻</div>
+            <h3>1:1 Dedicated PC</h3>
+            <p>Every student receives a dedicated computer station for uninterrupted daily practicals.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">📜</div>
+            <h3>Recognized Diplomas</h3>
+            <p>Affiliated DCA and PGDCA certificates valid for all central & state government exams.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">❄️</div>
+            <h3>Fully AC & Wi-Fi Lab</h3>
+            <p>Ergonomic learning environment with 100% power backup and CCTV security.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">💼</div>
+            <h3>100% Job Assistance</h3>
+            <p>Interview preparation, resume building, and placement guidance for top local firms.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section class="section" id="courses">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Career Oriented Programs</div>
+          <h2 class="section-title">Industry-Recognized <span class="gradient-text">Courses & Certifications</span></h2>
+          <p class="section-desc">
+            Choose from comprehensive diploma and certificate programs designed for government examinations, corporate accounting, and modern software development.
+          </p>
+        </div>
+
+        <div class="course-filter-bar">
+          <button class="filter-chip active" data-course-filter="all">All Courses</button>
+          <button class="filter-chip" data-course-filter="govt">Govt. Exams & Typing</button>
+          <button class="filter-chip" data-course-filter="accounts">Accounting & GST</button>
+          <button class="filter-chip" data-course-filter="diploma">University Diplomas</button>
+          <button class="filter-chip" data-course-filter="coding">Coding & Web Dev</button>
+          <button class="filter-chip" data-course-filter="design">Graphic & DTP</button>
+        </div>
+
+        <div class="courses-grid" id="coursesGrid">
+          <!-- Course 1: CPCT -->
+          <div class="course-card" data-category="govt">
+            <div>
+              <span class="course-card-tag hot">🔥 Most Popular</span>
+              <h3 class="course-title">CPCT (Computer Proficiency Certification Test)</h3>
+              <div class="course-title-hi">सीपीसीटी कंप्यूटर दक्षता एवं स्पीड टाइपिंग तैयारी</div>
+              <div class="course-meta-pills">
+                <span class="meta-pill">⏱ 3 to 6 Months</span>
+                <span class="meta-pill">🎯 MP Govt. Exams</span>
+                <span class="meta-pill">⌨ 45+ WPM Drills</span>
+              </div>
+              <ul class="course-highlights-list">
+                <li>English & Hindi (Mangal / Krutidev) Typing</li>
+                <li>Computer Theory & MCQ Exam Preparation</li>
+                <li>Daily 2-Hour Practical Lab Sessions</li>
+                <li>Weekly Full-Length Mock Tests</li>
+              </ul>
+            </div>
+            <div class="course-card-footer">
+              <div class="course-fee-info">
+                <span>Fee starting from</span>
+                <strong>₹3,000 / 3 Months</strong>
+              </div>
+              <button class="btn btn-outline" data-syllabus-course="CPCT">Syllabus PDF ↗</button>
+            </div>
+          </div>
+
+          <!-- Course 2: Tally Prime + GST -->
+          <div class="course-card" data-category="accounts">
+            <div>
+              <span class="course-card-tag hot">💼 High Demand</span>
+              <h3 class="course-title">Tally Prime with GST & e-Invoicing</h3>
+              <div class="course-title-hi">टैली प्राइम विद जीएसटी एवं व्यावसायिक अकाउंटिंग</div>
+              <div class="course-meta-pills">
+                <span class="meta-pill">⏱ 4 Months</span>
+                <span class="meta-pill">📊 Live Company Data</span>
+                <span class="meta-pill">📜 ISO Partner</span>
+              </div>
+              <ul class="course-highlights-list">
+                <li>Voucher Entry, Ledger, & Inventory Management</li>
+                <li>GST Calculation, Tax Filing & E-Way Bills</li>
+                <li>Bank Reconciliation & Balance Sheet Finalization</li>
+                <li>Payroll & TDS Accounting Fundamentals</li>
+              </ul>
+            </div>
+            <div class="course-card-footer">
+              <div class="course-fee-info">
+                <span>Total Course Fee</span>
+                <strong>₹6,300 (EMI Available)</strong>
+              </div>
+              <button class="btn btn-outline" data-syllabus-course="Tally Prime GST">Syllabus PDF ↗</button>
+            </div>
+          </div>
+
+          <!-- Course 3: DCA -->
+          <div class="course-card" data-category="diploma">
+            <div>
+              <span class="course-card-tag">🎓 1-Year Diploma</span>
+              <h3 class="course-title">DCA (Diploma in Computer Applications)</h3>
+              <div class="course-title-hi">डीसीए — 1 वर्षीय विश्वविद्यालय मान्यता प्राप्त डिप्लोमा</div>
+              <div class="course-meta-pills">
+                <span class="meta-pill">⏱ 1 Year</span>
+                <span class="meta-pill">🏛 University Certified</span>
+                <span class="meta-pill">📜 10+2 Level</span>
+              </div>
+              <ul class="course-highlights-list">
+                <li>Fundamentals of Computers & Windows OS</li>
+                <li>MS Office Suite (Word, Excel, PowerPoint, Access)</li>
+                <li>Database Management & Basic Programming</li>
+                <li>Internet, E-Commerce, & Multimedia Concepts</li>
+              </ul>
+            </div>
+            <div class="course-card-footer">
+              <div class="course-fee-info">
+                <span>Fee Structure</span>
+                <strong>₹11,500 (Easy Installments)</strong>
+              </div>
+              <button class="btn btn-outline" data-syllabus-course="DCA">Syllabus PDF ↗</button>
+            </div>
+          </div>
+
+          <!-- Course 4: PGDCA -->
+          <div class="course-card" data-category="diploma">
+            <div>
+              <span class="course-card-tag">🎓 PG Diploma</span>
+              <h3 class="course-title">PGDCA (Post Graduate Diploma in Computer Applications)</h3>
+              <div class="course-title-hi">पीजीडीसीए — स्नातकोत्तर कंप्यूटर डिप्लोमा</div>
+              <div class="course-meta-pills">
+                <span class="meta-pill">⏱ 1 Year</span>
+                <span class="meta-pill">🏛 University Approved</span>
+                <span class="meta-pill">🎓 Graduate Level</span>
+              </div>
+              <ul class="course-highlights-list">
+                <li>Advanced Information Technology & Programming</li>
+                <li>RDBMS, SQL & System Analysis</li>
+                <li>OOP Concepts with C++ & Financial Accounting</li>
+                <li>Major Industrial Project Submission</li>
+              </ul>
+            </div>
+            <div class="course-card-footer">
+              <div class="course-fee-info">
+                <span>Fee Structure</span>
+                <strong>₹12,500 (Easy Installments)</strong>
+              </div>
+              <button class="btn btn-outline" data-syllabus-course="PGDCA">Syllabus PDF ↗</button>
+            </div>
+          </div>
+
+          <!-- Course 5: Speed Typing -->
+          <div class="course-card" data-category="govt">
+            <div>
+              <span class="course-card-tag">⌨ Monthly Practice</span>
+              <h3 class="course-title">Hindi & English Speed Typing Batch</h3>
+              <div class="course-title-hi">हिंदी एवं अंग्रेजी टाइपिंग स्पीड बैच</div>
+              <div class="course-meta-pills">
+                <span class="meta-pill">⏱ Monthly Renewal</span>
+                <span class="meta-pill">⚡ 45+ WPM Target</span>
+                <span class="meta-pill">⌨ Daily 1-2 Hours</span>
+              </div>
+              <ul class="course-highlights-list">
+                <li>Touch Typing technique from basic finger placement</li>
+                <li>Krutidev 010 & Mangal (Inscript / Remington)</li>
+                <li>Timed examination passages & error reduction</li>
+                <li>Special batches for High Court & Patwari exams</li>
+              </ul>
+            </div>
+            <div class="course-card-footer">
+              <div class="course-fee-info">
+                <span>Monthly Subscription</span>
+                <strong>₹300 / Month</strong>
+              </div>
+              <button class="btn btn-outline" data-syllabus-course="Typing">Book Seat ↗</button>
+            </div>
+          </div>
+
+          <!-- Course 6: Programming & Web Dev -->
+          <div class="course-card" data-category="coding">
+            <div>
+              <span class="course-card-tag">💻 Tech Skills</span>
+              <h3 class="course-title">Coding & Web Design (C, C++, Java, Python, Web)</h3>
+              <div class="course-title-hi">प्रोग्रामिंग लैंग्वेजेस एवं वेबसाइट डिजाइनिंग</div>
+              <div class="course-meta-pills">
+                <span class="meta-pill">⏱ 3 Months</span>
+                <span class="meta-pill">🚀 Logic to Projects</span>
+                <span class="meta-pill">🌐 Full Stack Basics</span>
+              </div>
+              <ul class="course-highlights-list">
+                <li>C, C++, OOPs, Data Structures & Algorithms</li>
+                <li>Core & Advanced Java / Python Programming</li>
+                <li>HTML5, CSS3, JavaScript & Modern Frontend</li>
+                <li>Hands-on code projects & certification</li>
+              </ul>
+            </div>
+            <div class="course-card-footer">
+              <div class="course-fee-info">
+                <span>Course Fee starting from</span>
+                <strong>₹2,000 – ₹3,000</strong>
+              </div>
+              <button class="btn btn-outline" data-syllabus-course="Coding">Syllabus PDF ↗</button>
+            </div>
+          </div>
+
+          <!-- Course 7: DTP & Graphic Design -->
+          <div class="course-card" data-category="design">
+            <div>
+              <span class="course-card-tag">🎨 Creative</span>
+              <h3 class="course-title">DTP (Photoshop, CorelDraw, PageMaker)</h3>
+              <div class="course-title-hi">डेस्कटॉप पब्लिशिंग एवं ग्राफिक डिजाइनिंग</div>
+              <div class="course-meta-pills">
+                <span class="meta-pill">⏱ 3 Months</span>
+                <span class="meta-pill">🖼 Flex, Banners, Ads</span>
+                <span class="meta-pill">🖨 Prepress Ready</span>
+              </div>
+              <ul class="course-highlights-list">
+                <li>Adobe Photoshop Photo Editing & Retouching</li>
+                <li>CorelDraw Vector Art, Logos & Visiting Cards</li>
+                <li>PageMaker Magazine & Book Layout Design</li>
+                <li>Print media preparation & color modes</li>
+              </ul>
+            </div>
+            <div class="course-card-footer">
+              <div class="course-fee-info">
+                <span>Complete Course Fee</span>
+                <strong>₹3,000</strong>
+              </div>
+              <button class="btn btn-outline" data-syllabus-course="DTP">Syllabus PDF ↗</button>
+            </div>
+          </div>
+
+          <!-- Course 8: Basic Computer / CCA -->
+          <div class="course-card" data-category="accounts">
+            <div>
+              <span class="course-card-tag">🌱 For Beginners</span>
+              <h3 class="course-title">Basic Computer Course (CCA / MS Office)</h3>
+              <div class="course-title-hi">बुनियादी कंप्यूटर ज्ञान एवं एमएस ऑफिस</div>
+              <div class="course-meta-pills">
+                <span class="meta-pill">⏱ 2 Months</span>
+                <span class="meta-pill">📄 Word, Excel, PPT</span>
+                <span class="meta-pill">🌐 Internet Banking</span>
+              </div>
+              <ul class="course-highlights-list">
+                <li>Operating System, File Management & Keyboard Shortcuts</li>
+                <li>Microsoft Word, Excel Formulas & PowerPoint Presentations</li>
+                <li>Email, Online Government Portals & Cybersecurity</li>
+                <li>Perfect foundational course for students and housewives</li>
+              </ul>
+            </div>
+            <div class="course-card-footer">
+              <div class="course-fee-info">
+                <span>Complete Package</span>
+                <strong>₹2,000</strong>
+              </div>
+              <button class="btn btn-outline" data-syllabus-course="Basic Computer">Syllabus PDF ↗</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE FEE EMI CALCULATOR -->
+    <section class="section" id="calculator" style="background: rgba(0, 0, 0, 0.2);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Transparent Pricing</div>
+          <h2 class="section-title">Interactive <span class="gradient-text">Course Fee & EMI</span> Calculator</h2>
+          <p class="section-desc">
+            Calculate your course fee and convenient installment options with 100% transparency. No hidden charges.
+          </p>
+        </div>
+
+        <div class="calculator-box">
+          <div class="calc-form">
+            <div class="calc-form-group">
+              <label class="calc-label" for="calcCourseSelect">Select Desired Course:</label>
+              <select class="calc-select" id="calcCourseSelect">
+                <option value="cpct_3m">CPCT (3 Months Fast-Track) — ₹3,000</option>
+                <option value="cpct_6m">CPCT (6 Months Comprehensive) — ₹5,000</option>
+                <option value="tally">Tally Prime + GST (4 Months) — ₹6,300</option>
+                <option value="dca">DCA (1 Year University Diploma) — ₹11,500</option>
+                <option value="pgdca">PGDCA (1 Year PG Diploma) — ₹12,500</option>
+                <option value="typing_m">Monthly Typing Practice — ₹300 / Month</option>
+                <option value="dtp">DTP (Photoshop + Corel) — ₹3,000</option>
+                <option value="programming">Programming (C/C++/Python) — ₹3,000</option>
+              </select>
+            </div>
+
+            <div class="calc-form-group">
+              <label class="calc-label" for="calcPlanSelect">Choose Payment Mode:</label>
+              <select class="calc-select" id="calcPlanSelect">
+                <option value="onetime">One-Time Full Payment (Best Value)</option>
+                <option value="2_installments">2 Easy Installments</option>
+                <option value="3_installments">3 Monthly Installments</option>
+              </select>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+              <a href="#book-demo" class="btn btn-primary" style="width: 100%;">Claim ₹500 Early Bird Admission Discount Voucher 🎁</a>
+            </div>
+          </div>
+
+          <div class="calc-result-panel">
+            <span style="font-size: 0.95rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Estimated Payable Amount</span>
+            <div class="calc-result-amount" id="calcFinalFee">₹3,000</div>
+            <p id="calcEmiNote" style="font-size: 0.98rem; color: var(--text-muted); margin-bottom: 1.5rem;">Full One-Time Payment for 3 Months</p>
+            <div style="font-size: 0.85rem; color: var(--text-dim);">
+              ✓ Includes Lab Workstation Time & Free Notes PDF<br>
+              ✓ No extra registration charges
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURATED CAMPUS & LAB PHOTO GALLERY -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Campus Showcase</div>
+          <h2 class="section-title">Explore Our <span class="gradient-text">Modern Computer Labs</span> & Student Life</h2>
+          <p class="section-desc">
+            Take a look inside our Thatipur training facility — high-tech workstations, dedicated typing labs, student celebrations, and authorized awards.
+          </p>
+        </div>
+
+        <div class="gallery-search-bar">
+          <span class="gallery-search-icon">🔍</span>
+          <input type="text" class="gallery-search-input" id="gallerySearch" placeholder="Search photos (e.g. lab, typing, tally, students)...">
+        </div>
+
+        <div class="course-filter-bar" style="margin-bottom: 2rem;">
+          <button class="filter-chip active" data-gallery-filter="all">All Photos (35)</button>
+          <button class="filter-chip" data-gallery-filter="labs">Computer Labs</button>
+          <button class="filter-chip" data-gallery-filter="typing">Typing Sessions</button>
+          <button class="filter-chip" data-gallery-filter="students">Students & Alumni</button>
+          <button class="filter-chip" data-gallery-filter="courses">Course Charts</button>
+          <button class="filter-chip" data-gallery-filter="certificates">Certifications</button>
+        </div>
+
+        <!-- Rendered dynamically by app.js -->
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <!-- STUDENT TESTIMONIALS -->
+    <section class="section" id="reviews" style="background: rgba(0, 0, 0, 0.15);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Student Reviews</div>
+          <h2 class="section-title">What Our <span class="gradient-text">Graduates & Students</span> Say</h2>
+          <p class="section-desc">
+            Over 10,000+ students have built successful careers and cleared state exams with Daksh Computer Education.
+          </p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">
+              "Maine Daksh Institute se CPCT typing ki practice ki thi. Yaha ke timer software aur sir ke guidance se meri English speed 48 WPM aur Hindi 38 WPM cross ho gayi aur maine first attempt me CPCT clear kar liya!"
+            </p>
+            <div class="review-author">
+              <div class="author-avatar">AP</div>
+              <div class="author-info">
+                <strong>Ankit Patel</strong>
+                <span>Cleared MP High Court Exam (Thatipur, Gwalior)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">
+              "Tally Prime with GST course yaha best padhaya jata hai. Live company data pe invoice generation aur balance sheet finalization sikhne ko mila. Aaj main Gwalior me ek reputed firm me Accounts Executive hu."
+            </p>
+            <div class="review-author">
+              <div class="author-avatar">PS</div>
+              <div class="author-info">
+                <strong>Pooja Sharma</strong>
+                <span>Tally Prime Batch (Mayur Market Branch)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">
+              "DCA Diploma ke liye Daksh Gwalior ka best institute hai. Har student ko alag PC milta hai aur faculty bahut patient aur cooperative hai. Regular practical lab sessions se saare concepts clear ho gaye."
+            </p>
+            <div class="review-author">
+              <div class="author-avatar">RM</div>
+              <div class="author-info">
+                <strong>Rahul Mishra</strong>
+                <span>DCA 1-Year Diploma Graduate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOK FREE DEMO & CONTACT SECTION -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info-panel">
+            <div>
+              <div class="section-badge">Get In Touch</div>
+              <h2 class="section-title">Visit Our <span class="gradient-text">Thatipur Campus</span> or Contact Us</h2>
+              <p class="section-desc" style="margin-bottom: 2rem;">
+                Have questions regarding new batches, university registrations or fee concessions? Walk into our campus or drop a message.
+              </p>
+            </div>
+
+            <div class="contact-item-card">
+              <div class="contact-card-icon">📍</div>
+              <div class="contact-card-content">
+                <strong>Main Campus Address:</strong>
+                <p>1st Floor, Near Ansiya Plaza, Mayur Market, Thatipur, Gwalior – 474011, Madhya Pradesh</p>
+              </div>
+            </div>
+
+            <div class="contact-item-card">
+              <div class="contact-card-icon">📞</div>
+              <div class="contact-card-content">
+                <strong>Direct Call & WhatsApp:</strong>
+                <p>
+                  <a href="tel:+919770251146" style="color: var(--primary-light); font-weight: 700;">+91 9770251146</a> / 
+                  <a href="tel:+919754587988" style="color: var(--primary-light); font-weight: 700;">+91 9754587988</a><br>
+                  <span style="font-size: 0.82rem; color: var(--text-dim);">Landline: 0751-3558038</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-item-card">
+              <div class="contact-card-icon">⏰</div>
+              <div class="contact-card-content">
+                <strong>Institute Working Hours:</strong>
+                <p>Monday to Saturday: 7:00 AM – 8:00 PM | Sunday: Special Mock Test Batches</p>
+              </div>
+            </div>
+
+            <div class="contact-item-card">
+              <div class="contact-card-icon">✉️</div>
+              <div class="contact-card-content">
+                <strong>Email Address:</strong>
+                <p><a href="mailto:dakshcomputergwl@gmail.com" style="color: var(--primary-light);">dakshcomputergwl@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-form-card" id="book-demo">
+            <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem;">Book 2-Day Free Trial Demo Class 🎯</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.75rem;">
+              Fill the form below to reserve your free demo seat. You can experience our live computer lab before taking admission.
+            </p>
+
+            <form id="demoBookingForm">
+              <div class="form-group">
+                <label class="form-label" for="demoName">Full Name (पूरा नाम) *</label>
+                <input type="text" class="form-input" id="demoName" placeholder="e.g. Rahul Sharma" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="demoPhone">Mobile Number (व्हाट्सएप नंबर) *</label>
+                <input type="tel" class="form-input" id="demoPhone" placeholder="e.g. 9876543210" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="demoCourse">Select Course Interested In *</label>
+                <select class="form-select" id="demoCourse" required>
+                  <option value="CPCT Typing & Computer Prep">CPCT Typing (English & Hindi) + Computer</option>
+                  <option value="Tally Prime + GST Accounting">Tally Prime with GST & e-Invoicing</option>
+                  <option value="DCA 1-Year Diploma">DCA (Diploma in Computer Applications)</option>
+                  <option value="PGDCA 1-Year PG Diploma">PGDCA (Post Graduate Diploma)</option>
+                  <option value="Basic Computer & MS Office">Basic Computer Course & MS Office</option>
+                  <option value="Programming (C, C++, Java, Python)">Programming (C/C++, Java, Python, Web)</option>
+                  <option value="DTP & Graphic Designing">DTP (Photoshop, CorelDraw, PageMaker)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="demoTiming">Preferred Batch Timing *</label>
+                <select class="form-select" id="demoTiming" required>
+                  <option value="Morning Batch (7 AM - 11 AM)">Morning Batch (7:00 AM – 11:00 AM)</option>
+                  <option value="Afternoon Batch (12 PM - 3 PM)">Afternoon Batch (12:00 PM – 3:00 PM)</option>
+                  <option value="Evening Batch (4 PM - 8 PM)">Evening Batch (4:00 PM – 8:00 PM)</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-secondary" style="width: 100%; padding: 0.9rem; font-size: 1.05rem; margin-top: 0.75rem;">
+                🚀 Confirm Free Demo Class (via WhatsApp)
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <a href="#home" class="brand">
+            <div class="brand-logo-badge">D</div>
+            <div class="brand-text">
+              <span class="brand-title">DAKSH</span>
+              <span class="brand-subtitle">Computer Education</span>
+            </div>
+          </a>
+          <p>
+            Madhya Pradesh's trusted computer and speed typing institute. Offering 100% practical lab training for government exams, corporate accounts and software skills since 2010.
+          </p>
+          <div style="font-size: 0.85rem; color: #f59e0b; font-weight: 600;">
+            ✓ ISO 9001:2015 Certified Institute · Thatipur, Gwalior
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Popular Courses</h4>
+          <ul class="footer-links-list">
+            <li><a href="#courses">CPCT Exam Typing</a></li>
+            <li><a href="#courses">Tally Prime + GST</a></li>
+            <li><a href="#courses">DCA Diploma</a></li>
+            <li><a href="#courses">PGDCA Diploma</a></li>
+            <li><a href="#courses">C / C++ & Python</a></li>
+            <li><a href="#courses">DTP & Photoshop</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#typing-test">Live Typing Test ⚡</a></li>
+            <li><a href="#calculator">Fee Calculator</a></li>
+            <li><a href="#gallery">Computer Labs</a></li>
+            <li><a href="#reviews">Student Testimonials</a></li>
+            <li><a href="#book-demo">Book Free Demo</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Campus Contact</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            1st Floor, Near Ansiya Plaza, Mayur Market, Thatipur, Gwalior (M.P.)
+          </p>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            📞 <a href="tel:+919770251146" style="color: var(--primary-light);">+91 9770251146</a><br>
+            📞 <a href="tel:+919754587988" style="color: var(--primary-light);">+91 9754587988</a>
+          </p>
+          <p style="font-size: 0.85rem; color: var(--text-dim);">
+            ✉️ dakshcomputergwl@gmail.com
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span>© 2026 Daksh Computer Education. All Rights Reserved.</span>
+          <a href="admin.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.75rem; opacity: 0.5;" title="Admin Vault Portal">⚡ Admin</a>
+        </div>
+
+        <div>Designed & Developed for High Performance | Hosted on High-Speed Cloud</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL DIALOG -->
+  <dialog class="lightbox-modal" id="lightboxModal">
+    <div class="lightbox-container">
+      <button class="lightbox-close-btn" id="lightboxClose" aria-label="Close Lightbox">✕</button>
+      <button class="lightbox-nav-btn prev" id="lightboxPrev" aria-label="Previous Image">‹</button>
+      <div class="lightbox-img-wrap">
+        <img src="" id="lightboxImg" alt="Expanded Photo">
+      </div>
+      <div class="lightbox-caption-bar">
+        <strong id="lightboxTitle">Photo Title</strong>
+        <p id="lightboxDesc">Photo description...</p>
+      </div>
+      <button class="lightbox-nav-btn next" id="lightboxNext" aria-label="Next Image">›</button>
+    </div>
+  </dialog>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/919770251146?text=Namaste%20Daksh%20Institute,%20I%20want%20to%20enquire%20about%20admissions." target="_blank" rel="noopener" class="floating-whatsapp-widget" aria-label="Chat on WhatsApp">
+    <span style="font-size: 1.4rem;">💬</span>
+    <span>Enquire on WhatsApp</span>
+  </a>
+
+  <!-- Main JavaScript Engine -->
+  <script src="app.js"></script>
+</body>
+</html>

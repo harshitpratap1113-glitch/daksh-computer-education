@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070a13">
+  <title>Daksh Admin Vault & Website Killswitch Control Center</title>
+  
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232563eb'/%3E%3Cpath d='M32 14L48 22V34C48 44 41 52 32 55C23 52 16 44 16 34V22L32 14Z' fill='%233b82f6' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M28 32L32 36L38 28' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #070a13;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --card-border: rgba(51, 65, 85, 0.6);
+      --primary: #2563eb;
+      --primary-glow: rgba(37, 99, 235, 0.35);
+      --success: #10b981;
+      --success-glow: rgba(16, 185, 129, 0.3);
+      --danger: #ef4444;
+      --danger-glow: rgba(239, 68, 68, 0.35);
+      --warning: #f59e0b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.9) 0px, transparent 100%);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Ambient cyber grid overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      color: #fbbf24;
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .brand-info h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .badge-live {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--success);
+      box-shadow: 0 0 15px var(--success-glow);
+    }
+
+    .badge-disabled {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: var(--danger);
+      box-shadow: 0 0 15px var(--danger-glow);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .pulse-live {
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
+      animation: pulse-anim 1.5s infinite;
+    }
+
+    .pulse-disabled {
+      background: var(--danger);
+      box-shadow: 0 0 8px var(--danger);
+      animation: pulse-anim 1.5s infinite;
+    }
+
+    @keyframes pulse-anim {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .btn-secondary {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(51, 65, 85, 0.8);
+      border-color: rgba(100, 116, 139, 0.8);
+    }
+
+    /* Auth Screen Modal / Gate */
+    .auth-gate {
+      max-width: 480px;
+      width: 100%;
+      margin: 40px auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      text-align: center;
+    }
+
+    .auth-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .auth-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .auth-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .auth-input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .auth-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .auth-input {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .auth-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .auth-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border: none;
+      color: white;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 10px 20px -5px var(--primary-glow);
+      transition: all 0.2s;
+    }
+
+    .auth-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 15px 25px -5px var(--primary-glow);
+    }
+
+    .auth-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .auth-keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .keypad-btn {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .keypad-btn:hover {
+      background: rgba(51, 65, 85, 0.8);
+      border-color: var(--primary);
+    }
+
+    .keypad-btn:active {
+      transform: scale(0.95);
+    }
+
+    .auth-toggle-mode {
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: var(--primary);
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-decoration: underline;
+    }
+
+    .auth-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-top: 16px;
+      display: none;
+    }
+
+    /* Dashboard Layout */
+    .dashboard {
+      display: none;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Master Killswitch Hero Card */
+    .hero-switch-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-switch-card.status-active {
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: 0 10px 30px -10px var(--success-glow);
+    }
+
+    .hero-switch-card.status-disabled {
+      border-color: rgba(239, 68, 68, 0.4);
+      box-shadow: 0 10px 30px -10px var(--danger-glow);
+    }
+
+    .switch-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .switch-title h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .switch-title p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 600px;
+    }
+
+    .master-switch-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .control-card {
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .control-card.active-state {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: var(--success);
+      box-shadow: 0 0 25px var(--success-glow);
+    }
+
+    .control-card.disabled-state {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: var(--danger);
+      box-shadow: 0 0 25px var(--danger-glow);
+    }
+
+    .control-card.inactive-opt {
+      background: rgba(15, 23, 42, 0.6);
+      border-color: var(--card-border);
+      opacity: 0.7;
+    }
+
+    .control-card.inactive-opt:hover {
+      opacity: 1;
+      border-color: var(--text-muted);
+      transform: translateY(-2px);
+    }
+
+    .card-badge-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-icon {
+      font-size: 28px;
+    }
+
+    .radio-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--text-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .control-card.active-state .radio-circle {
+      border-color: var(--success);
+      background: var(--success);
+    }
+
+    .control-card.active-state .radio-circle::after {
+      content: '✓';
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .control-card.disabled-state .radio-circle {
+      border-color: var(--danger);
+      background: var(--danger);
+    }
+
+    .control-card.disabled-state .radio-circle::after {
+      content: '✓';
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .card-text h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .card-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Diagnostics Grid */
+    .grid-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stat-card-title {
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-card-val {
+      font-size: 1.4rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-card-sub {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* Fast Action Bar */
+    .action-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-action:hover {
+      background: rgba(51, 65, 85, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .btn-danger-action {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+
+    .btn-danger-action:hover {
+      background: rgba(239, 68, 68, 0.3);
+      border-color: var(--danger);
+      color: #ffffff;
+    }
+
+    .btn-success-action {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+    }
+
+    .btn-success-action:hover {
+      background: rgba(16, 185, 129, 0.3);
+      border-color: var(--success);
+      color: #ffffff;
+    }
+
+    /* Audit Terminal */
+    .terminal-card {
+      background: #030712;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    .terminal-title-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+      margin-bottom: 12px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .terminal-logs {
+      max-height: 180px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .log-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .log-time { color: var(--text-dim); }
+    .log-tag-live { color: var(--success); font-weight: 700; }
+    .log-tag-off { color: var(--danger); font-weight: 700; }
+    .log-tag-auth { color: var(--warning); font-weight: 700; }
+
+    /* Toast Notification */
+    .admin-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      color: #ffffff;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 9999;
+    }
+
+    .admin-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 680px) {
+      .master-switch-controls { grid-template-columns: 1fr; }
+      .top-bar { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .wrapper { padding: 16px 12px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <!-- Top Header Bar -->
+    <header class="top-bar">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-info">
+          <h1>Daksh Admin Vault</h1>
+          <p>Production Cloud & Killswitch Controller</p>
+        </div>
+      </a>
+
+      <div class="top-actions">
+        <div class="badge-status badge-live" id="globalStatusBadge">
+          <span class="pulse-dot pulse-live" id="globalStatusPulse"></span>
+          <span id="globalStatusText">WEBSITE LIVE</span>
+        </div>
+        <button class="btn-secondary" id="logoutBtn" style="display: none;" onclick="adminLogout()">
+          🔒 Lock Vault
+        </button>
+      </div>
+    </header>
+
+    <!-- 1. AUTHENTICATION SHIELD GATE -->
+    <section class="auth-gate" id="authGate">
+      <div class="auth-icon">🛡️</div>
+      <h2 class="auth-title">Admin Vault Verification</h2>
+      <p class="auth-subtitle">
+        Enter Master Passcode, Godmode Crypt Key, or 6-Digit PIN to access website killswitch controls.
+      </p>
+
+      <form id="authForm" onsubmit="handleAuthSubmit(event)">
+        <!-- Passcode Input Mode -->
+        <div id="passcodeMode">
+          <div class="auth-input-group">
+            <label class="auth-label" for="passcodeInput">Master Passcode / Key / PIN</label>
+            <input 
+              type="password" 
+              id="passcodeInput" 
+              class="auth-input" 
+              placeholder="Enter passcode (e.g. 889926 or pass)..." 
+              autocomplete="current-password"
+              required
+            >
+          </div>
+          <button type="submit" class="auth-btn" id="authSubmitBtn">
+            <span>Unlock Admin Vault</span> <span>→</span>
+          </button>
+        </div>
+
+        <!-- PIN Keypad Quick Input Mode -->
+        <div id="keypadMode" style="display: none;">
+          <div class="auth-input-group">
+            <label class="auth-label">6-Digit Security PIN</label>
+            <input 
+              type="password" 
+              id="pinDisplay" 
+              class="auth-input" 
+              placeholder="••••••" 
+              readonly 
+              style="text-align: center; letter-spacing: 8px; font-size: 1.4rem;"
+            >
+          </div>
+          <div class="auth-keypad">
+            <button type="button" class="keypad-btn" onclick="pressPin('1')">1</button>
+            <button type="button" class="keypad-btn" onclick="pressPin('2')">2</button>
+            <button type="button" class="keypad-btn" onclick="pressPin('3')">3</button>
+            <button type="button" class="keypad-btn" onclick="pressPin('4')">4</button>
+            <button type="button" class="keypad-btn" onclick="pressPin('5')">5</button>
+            <button type="button" class="keypad-btn" onclick="pressPin('6')">6</button>
+            <button type="button" class="keypad-btn" onclick="pressPin('7')">7</button>
+            <button type="button" class="keypad-btn" onclick="pressPin('8')">8</button>
+            <button type="button" class="keypad-btn" onclick="pressPin('9')">9</button>
+            <button type="button" class="keypad-btn" onclick="clearPin()">CLR</button>
+            <button type="button" class="keypad-btn" onclick="pressPin('0')">0</button>
+            <button type="button" class="keypad-btn" onclick="submitPin()">OK</button>
+          </div>
+        </div>
+
+        <button type="button" class="auth-toggle-mode" id="toggleModeBtn" onclick="toggleAuthInputMode()">
+          Switch to PIN Keypad Mode
+        </button>
+
+        <div class="auth-error" id="authErrorMsg">
+          ⚠️ Invalid credentials. Please enter authorized Master Passcode or PIN.
+        </div>
+      </form>
+    </section>
+
+    <!-- 2. AUTHENTICATED DASHBOARD -->
+    <main class="dashboard" id="mainDashboard">
+      
+      <!-- HERO MASTER KILLSWITCH CARD -->
+      <section class="hero-switch-card status-active" id="heroSwitchCard">
+        <div class="switch-header">
+          <div class="switch-title">
+            <h2 id="heroStatusHeading">🟢 Website is ONLINE & ACTIVE</h2>
+            <p id="heroStatusSub">
+              All prospective students and visitors can browse the institute homepage, view courses, run live typing tests, and contact on WhatsApp.
+            </p>
+          </div>
+          <div class="badge-status badge-live" id="heroBadge">
+            <span class="pulse-dot pulse-live" id="heroPulse"></span>
+            <span id="heroBadgeText">PUBLIC ACCESS ENABLED</span>
+          </div>
+        </div>
+
+        <!-- 2 Big Selectable Option Cards (Enable / Disable) -->
+        <div class="master-switch-controls">
+          <!-- Option 1: ENABLE LIVE -->
+          <div 
+            class="control-card active-state" 
+            id="optEnableCard" 
+            onclick="setWebsiteStatus('active')"
+          >
+            <div class="card-badge-top">
+              <span class="card-icon">🚀</span>
+              <div class="radio-circle"></div>
+            </div>
+            <div class="card-text">
+              <h3>ENABLE WEBSITE (Go Live)</h3>
+              <p>Normal public mode. The full institute website is visible and accepting admission enquiries.</p>
+            </div>
+          </div>
+
+          <!-- Option 2: DISABLE (500 ERROR) -->
+          <div 
+            class="control-card inactive-opt" 
+            id="optDisableCard" 
+            onclick="setWebsiteStatus('disabled')"
+          >
+            <div class="card-badge-top">
+              <span class="card-icon">🛑</span>
+              <div class="radio-circle"></div>
+            </div>
+            <div class="card-text">
+              <h3>DISABLE WEBSITE (500 Crash Mode)</h3>
+              <p>Simulates a critical host server crash (HTTP 500 error). Visitors see the realistic offline terminal.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIVE DIAGNOSTICS & TELEMETRY -->
+      <section class="grid-stats">
+        <div class="stat-card">
+          <div class="stat-card-title">
+            <span>HTTP Status Code</span>
+            <span>🌐</span>
+          </div>
+          <div class="stat-card-val" id="diagHttpCode" style="color: var(--success);">200 OK</div>
+          <div class="stat-card-sub" id="diagHttpSub">Public gateway passing traffic</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-title">
+            <span>Edge Infrastructure</span>
+            <span>⚡</span>
+          </div>
+          <div class="stat-card-val" style="color: #60a5fa;">Vercel Edge</div>
+          <div class="stat-card-sub">Region: ap-south-1 (Mumbai Hub)</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-title">
+            <span>API Response Latency</span>
+            <span>⏱️</span>
+          </div>
+          <div class="stat-card-val" id="diagLatency" style="color: var(--warning);">24 ms</div>
+          <div class="stat-card-sub">Real-time status check active</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-title">
+            <span>Last Status Update</span>
+            <span>🕒</span>
+          </div>
+          <div class="stat-card-val" id="diagLastUpdated" style="font-size: 0.95rem; color: #cbd5e1;">Just now</div>
+          <div class="stat-card-sub" id="diagUpdatedBy">By: Master Admin</div>
+        </div>
+      </section>
+
+      <!-- FAST ACTION BAR -->
+      <section class="action-bar">
+        <a href="index.html" target="_blank" class="btn-action">
+          <span>👁️</span> <span>Open Live Website</span>
+        </a>
+        <button class="btn-action" onclick="previewCrashPage()">
+          <span>⚠️</span> <span>Preview 500 Error Screen</span>
+        </button>
+        <button class="btn-action" onclick="refreshStatusFromCloud()">
+          <span>🔄</span> <span>Sync Cloud Telemetry</span>
+        </button>
+        <button class="btn-action btn-danger-action" onclick="emergencyKillswitch()">
+          <span>⚡</span> <span>Instant Emergency Killswitch</span>
+        </button>
+      </section>
+
+      <!-- AUDIT LOG TERMINAL -->
+      <section class="terminal-card">
+        <div class="terminal-title-bar">
+          <span>⚡ REAL-TIME SECURITY & AUDIT TRAIL</span>
+          <span>NODE: daksh-admin-shield-x99</span>
+        </div>
+        <div class="terminal-logs" id="terminalLogs">
+          <div class="log-row">
+            <span class="log-time" id="initLogTime">[00:00:00]</span>
+            <span class="log-tag-auth">AUTH:</span>
+            <span>Admin Vault Session successfully authorized with Master Keys.</span>
+          </div>
+          <div class="log-row">
+            <span class="log-time" id="initLogTime2">[00:00:01]</span>
+            <span class="log-tag-live">STATUS:</span>
+            <span>Website control engine initialized. Status synced.</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Dynamic Admin Toast -->
+  <div class="admin-toast" id="adminToast">
+    <span id="toastIcon">✅</span>
+    <span id="toastMsg">Status updated successfully</span>
+  </div>
+
+  <script>
+    /**
+     * DAKSH ADMIN VAULT CONTROLLER
+     * Master Security Passcodes & Synchronized State Engine
+     */
+
+    const MASTER_KEYS = [
+      'VOXAI-GODMODE-MASTER-KEY-2026-X99-CRYPT-SHIELD-OMEGA',
+      'DAKSH-GODMODE-MASTER-KEY-2026-X99-SHIELD',
+      'Daksh#Admin2026!Secured',
+      'VoxAI#Admin2026!Secured',
+      'Daksh#Master2026!Lock',
+      '889926'
+    ];
+
+    let currentPinInput = "";
+    let isKeypadMode = false;
+    let failedAttempts = 0;
+    let lockoutTimer = null;
+    let currentAuthPasscode = "";
+
+    // 1. Toast Notification
+    function showAdminToast(msg, icon = '✅') {
+      const toast = document.getElementById('adminToast');
+      document.getElementById('toastIcon').textContent = icon;
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // 2. Add Audit Log
+    function addAuditLog(tag, tagClass, text) {
+      const logs = document.getElementById('terminalLogs');
+      if (!logs) return;
+      const now = new Date();
+      const timeStr = `[${now.toLocaleTimeString()}]`;
+      const row = document.createElement('div');
+      row.className = 'log-row';
+      row.innerHTML = `<span class="log-time">${timeStr}</span> <span class="${tagClass}">${tag}:</span> <span>${text}</span>`;
+      logs.prepend(row);
+    }
+
+    // 3. Toggle Input Mode (Passcode vs Keypad)
+    function toggleAuthInputMode() {
+      isKeypadMode = !isKeypadMode;
+      document.getElementById('passcodeMode').style.display = isKeypadMode ? 'none' : 'block';
+      document.getElementById('keypadMode').style.display = isKeypadMode ? 'block' : 'none';
+      document.getElementById('toggleModeBtn').textContent = isKeypadMode 
+        ? 'Switch to Text Passcode Mode' 
+        : 'Switch to PIN Keypad Mode';
+    }
+
+    function pressPin(num) {
+      if (currentPinInput.length < 8) {
+        currentPinInput += num;
+        document.getElementById('pinDisplay').value = '•'.repeat(currentPinInput.length);
+      }
+    }
+
+    function clearPin() {
+      currentPinInput = "";
+      document.getElementById('pinDisplay').value = "";
+    }
+
+    function submitPin() {
+      validateAndLogin(currentPinInput);
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const val = document.getElementById('passcodeInput').value.trim();
+      validateAndLogin(val);
+    }
+
+    // 4. Validate Credentials
+    function validateAndLogin(input) {
+      const errorMsg = document.getElementById('authErrorMsg');
+
+      if (lockoutTimer) {
+        errorMsg.textContent = '⚠️ System is locked due to multiple failed attempts. Please wait.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      if (MASTER_KEYS.includes(input.trim())) {
+        // Success
+        currentAuthPasscode = input.trim();
+        sessionStorage.setItem('daksh_admin_token', 'AUTH_TOKEN_' + Date.now());
+        sessionStorage.setItem('daksh_admin_passcode', currentAuthPasscode);
+        localStorage.setItem('daksh_admin_bypass', 'true');
+        failedAttempts = 0;
+        errorMsg.style.display = 'none';
+
+        unlockDashboard();
+        showAdminToast('Admin Vault Access Granted', '🔓');
+      } else {
+        // Failed attempt
+        failedAttempts++;
+        errorMsg.textContent = `⚠️ Invalid credentials. (Attempt ${failedAttempts} of 5)`;
+        errorMsg.style.display = 'block';
+
+        if (failedAttempts >= 5) {
+          errorMsg.textContent = '🛑 Too many failed attempts. Vault locked for 60 seconds.';
+          lockoutTimer = setTimeout(() => {
+            lockoutTimer = null;
+            failedAttempts = 0;
+            errorMsg.style.display = 'none';
+          }, 60000);
+        }
+      }
+    }
+
+    // 5. Unlock Dashboard
+    function unlockDashboard() {
+      document.getElementById('authGate').style.display = 'none';
+      document.getElementById('mainDashboard').style.display = 'flex';
+      document.getElementById('logoutBtn').style.display = 'inline-flex';
+      
+      const now = new Date();
+      document.getElementById('initLogTime').textContent = `[${now.toLocaleTimeString()}]`;
+      document.getElementById('initLogTime2').textContent = `[${now.toLocaleTimeString()}]`;
+
+      refreshStatusFromCloud();
+    }
+
+    // 6. Logout
+    function adminLogout() {
+      sessionStorage.removeItem('daksh_admin_token');
+      sessionStorage.removeItem('daksh_admin_passcode');
+      localStorage.removeItem('daksh_admin_bypass');
+      document.getElementById('authGate').style.display = 'block';
+      document.getElementById('mainDashboard').style.display = 'none';
+      document.getElementById('logoutBtn').style.display = 'none';
+      document.getElementById('passcodeInput').value = '';
+      clearPin();
+      showAdminToast('Vault Locked Successfully', '🔒');
+    }
+
+    // 7. Check & Set Website Status
+    async function setWebsiteStatus(newStatus) {
+      const cardEnable = document.getElementById('optEnableCard');
+      const cardDisable = document.getElementById('optDisableCard');
+      const heroCard = document.getElementById('heroSwitchCard');
+      const heroHeading = document.getElementById('heroStatusHeading');
+      const heroSub = document.getElementById('heroStatusSub');
+      const heroBadge = document.getElementById('heroBadge');
+      const heroPulse = document.getElementById('heroPulse');
+      const heroBadgeText = document.getElementById('heroBadgeText');
+      const globalBadge = document.getElementById('globalStatusBadge');
+      const globalPulse = document.getElementById('globalStatusPulse');
+      const globalText = document.getElementById('globalStatusText');
+      const httpCode = document.getElementById('diagHttpCode');
+      const httpSub = document.getElementById('diagHttpSub');
+
+      const isLive = newStatus === 'active';
+
+      // 1. Update UI Elements
+      if (isLive) {
+        heroCard.className = 'hero-switch-card status-active';
+        heroHeading.innerHTML = '🟢 Website is ONLINE & ACTIVE';
+        heroHeading.style.color = '#ffffff';
+        heroSub.textContent = 'All prospective students and visitors can browse the institute homepage, view courses, run live typing tests, and contact on WhatsApp.';
+        heroBadge.className = 'badge-status badge-live';
+        heroPulse.className = 'pulse-dot pulse-live';
+        heroBadgeText.textContent = 'PUBLIC ACCESS ENABLED';
+
+        globalBadge.className = 'badge-status badge-live';
+        globalPulse.className = 'pulse-dot pulse-live';
+        globalText.textContent = 'WEBSITE LIVE';
+
+        cardEnable.className = 'control-card active-state';
+        cardDisable.className = 'control-card inactive-opt';
+
+        httpCode.textContent = '200 OK';
+        httpCode.style.color = 'var(--success)';
+        httpSub.textContent = 'Public gateway passing traffic';
+      } else {
+        heroCard.className = 'hero-switch-card status-disabled';
+        heroHeading.innerHTML = '🔴 Website is DISABLED (500 Error)';
+        heroHeading.style.color = '#fca5a5';
+        heroSub.textContent = 'Critical server crash simulated. All regular visitors visiting the homepage see the 500 Internal Server Error screen.';
+        heroBadge.className = 'badge-status badge-disabled';
+        heroPulse.className = 'pulse-dot pulse-disabled';
+        heroBadgeText.textContent = '500 CRASH ACTIVE';
+
+        globalBadge.className = 'badge-status badge-disabled';
+        globalPulse.className = 'pulse-dot pulse-disabled';
+        globalText.textContent = 'WEBSITE DISABLED';
+
+        cardEnable.className = 'control-card inactive-opt';
+        cardDisable.className = 'control-card disabled-state';
+
+        httpCode.textContent = '500 ERROR';
+        httpCode.style.color = 'var(--danger)';
+        httpSub.textContent = 'Host node unreachable simulation';
+      }
+
+      // Store in LocalStorage for client instant sync
+      localStorage.setItem('daksh_site_status', newStatus);
+      localStorage.setItem('daksh_status_time', new Date().toISOString());
+
+      // Update Telemetry
+      document.getElementById('diagLastUpdated').textContent = new Date().toLocaleTimeString();
+
+      // Push to Serverless Cloud API
+      try {
+        const passcode = currentAuthPasscode || sessionStorage.getItem('daksh_admin_passcode') || '889926';
+        const res = await fetch('/api/site-status', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            status: newStatus,
+            passcode: passcode,
+            updatedBy: 'Admin Vault Control'
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAdminToast(`Website is now: ${newStatus.toUpperCase()}`, isLive ? '🟢' : '🛑');
+          addAuditLog(
+            isLive ? 'LIVE' : 'OFFLINE',
+            isLive ? 'log-tag-live' : 'log-tag-off',
+            `Website switch flipped to [${newStatus.toUpperCase()}]. Cloud Edge synced.`
+          );
+        } else {
+          showAdminToast(`Status saved locally (${data.error || 'Cloud sync error'})`, '⚠️');
+        }
+      } catch (err) {
+        console.warn('Cloud API offline, saved locally:', err);
+        showAdminToast(`Website set to ${newStatus.toUpperCase()} (Local Sync Active)`, isLive ? '🟢' : '🛑');
+        addAuditLog(
+          isLive ? 'LIVE' : 'OFFLINE',
+          isLive ? 'log-tag-live' : 'log-tag-off',
+          `Website switched to [${newStatus.toUpperCase()}]. Synced to browser storage.`
+        );
+      }
+    }
+
+    // 8. Refresh Status from Cloud API
+    async function refreshStatusFromCloud() {
+      const startTime = performance.now();
+      try {
+        const res = await fetch('/api/site-status?t=' + Date.now());
+        const elapsed = Math.round(performance.now() - startTime);
+        document.getElementById('diagLatency').textContent = `${elapsed} ms`;
+
+        if (res.ok) {
+          const data = await res.json();
+          const currentStatus = data.status || localStorage.getItem('daksh_site_status') || 'active';
+          if (data.lastUpdated) {
+            const d = new Date(data.lastUpdated);
+            document.getElementById('diagLastUpdated').textContent = d.toLocaleTimeString();
+          }
+          if (data.updatedBy) {
+            document.getElementById('diagUpdatedBy').textContent = `By: ${data.updatedBy}`;
+          }
+          setWebsiteStatus(currentStatus);
+        } else {
+          const fallback = localStorage.getItem('daksh_site_status') || 'active';
+          setWebsiteStatus(fallback);
+        }
+      } catch (e) {
+        const fallback = localStorage.getItem('daksh_site_status') || 'active';
+        setWebsiteStatus(fallback);
+      }
+    }
+
+    // 9. Emergency Killswitch
+    function emergencyKillswitch() {
+      if (confirm("⚠️ EMERGENCY KILLSWITCH: Are you sure you want to instantly DISABLE the website and force the 500 error screen on all users?")) {
+        setWebsiteStatus('disabled');
+      }
+    }
+
+    // 10. Preview 500 Crash Page
+    function previewCrashPage() {
+      window.open('index.html?preview=500', '_blank');
+    }
+
+    // Auto-login if valid session already exists
+    window.addEventListener('DOMContentLoaded', () => {
+      const token = sessionStorage.getItem('daksh_admin_token');
+      const pass = sessionStorage.getItem('daksh_admin_passcode');
+      if (token && pass && MASTER_KEYS.includes(pass)) {
+        currentAuthPasscode = pass;
+        unlockDashboard();
+      } else {
+        // Default check
+        refreshStatusFromCloud();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1117">
+  <title>500 - Internal Server Error | Host Node Crashed</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ef4444'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='900' font-size='36' fill='%23ffffff'%3E!%3C/text%3E%3C/svg%3E">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --border: #1f2937;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.1);
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 780px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.8);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+
+    .error-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--danger-bg);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--danger);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--danger);
+      border-radius: 50%;
+      animation: pulse-red 1.5s infinite;
+    }
+
+    @keyframes pulse-red {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.85); }
+    }
+
+    .timestamp {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .status-visual {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .node-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .node.ok .node-icon {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--success);
+    }
+
+    .node.fail .node-icon {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid var(--danger);
+      color: var(--danger);
+    }
+
+    .node-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .node-status {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .node.ok .node-status { color: var(--success); }
+    .node.fail .node-status { color: var(--danger); }
+
+    .connector {
+      height: 2px;
+      background: var(--border);
+      position: relative;
+    }
+
+    .connector.active {
+      background: var(--success);
+    }
+
+    .connector.crashed {
+      background: repeating-linear-gradient(90deg, var(--danger), var(--danger) 4px, transparent 4px, transparent 8px);
+    }
+
+    .main-message {
+      margin-bottom: 28px;
+    }
+
+    .main-message h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .main-message p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .terminal-box {
+      background: #030712;
+      border: 1px solid #1f2937;
+      border-radius: 8px;
+      padding: 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.65;
+      color: #e5e7eb;
+      margin-bottom: 32px;
+      overflow-x: auto;
+    }
+
+    .terminal-header {
+      color: #6b7280;
+      border-bottom: 1px solid #1f2937;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .log-crit { color: #f87171; font-weight: 600; }
+    .log-warn { color: #fbbf24; }
+    .log-info { color: #9ca3af; }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-retry {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-retry:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-retry:active {
+      transform: scale(0.98);
+    }
+
+    .incident-info {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 24px 18px; }
+      .status-visual { grid-template-columns: 1fr; gap: 16px; }
+      .connector { display: none; }
+      .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .actions { flex-direction: column; align-items: stretch; text-align: center; }
+      .btn-retry { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="error-tag">
+        <span class="pulse"></span>
+        HTTP 500 : CRITICAL_SERVER_CRASH
+      </div>
+      <div class="timestamp" id="timeDisplay">UTC: 2026-10-01T19:24:10.842Z</div>
+    </div>
+
+    <!-- Realistic Cloud/Edge/Host Visual Flow -->
+    <div class="status-visual">
+      <div class="node ok">
+        <div class="node-icon">💻</div>
+        <div class="node-title">Your Client / Browser</div>
+        <div class="node-status">Working</div>
+      </div>
+      <div class="connector active"></div>
+      <div class="node ok">
+        <div class="node-icon">🌐</div>
+        <div class="node-title">Edge Network (CDN)</div>
+        <div class="node-status">Working</div>
+      </div>
+      <div class="connector crashed"></div>
+      <div class="node fail">
+        <div class="node-icon">💥</div>
+        <div class="node-title">Host Server / Origin</div>
+        <div class="node-status">Crashed / Offline</div>
+      </div>
+    </div>
+
+    <div class="main-message">
+      <h1>Server Infrastructure Crash (500)</h1>
+      <p>The origin cluster node hosting <strong>Daksh Computer Education</strong> experienced a fatal core runtime crash (SIGSEGV / OOM) and stopped responding. The database daemon and application socket terminated unexpectedly.</p>
+    </div>
+
+    <!-- Realistic Terminal Console Trace -->
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <span>CORE DUMP & LOG DIAGNOSTICS</span>
+        <span>NODE: cluster-ap-south-gwl-01</span>
+      </div>
+      <div><span class="log-info">[00:52:14.102]</span> <span class="log-warn">WARN:</span> Origin socket connection timeout on port 443 (host: daksh-primary-db)</div>
+      <div><span class="log-info">[00:52:15.849]</span> <span class="log-crit">CRIT:</span> Fatal Error: Process terminated with exit code 137 (Fatal signal SIGKILL / Memory leak)</div>
+      <div><span class="log-info">[00:52:16.002]</span> <span class="log-crit">FATAL:</span> Database connection pool exhausted: connection refused (127.0.0.1:5432)</div>
+      <div><span class="log-info">[00:52:16.140]</span> <span class="log-warn">ALERT:</span> Automated failover attempt failed. Origin cluster state changed to: [DEAD / OFFLINE]</div>
+      <div><span class="log-info">[00:52:17.391]</span> <span class="log-info">INFO:</span> Incident reported to sysadmin team. Auto-recovery daemon initialized...</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-retry" onclick="triggerRetry()">
+        <span id="retryIcon">🔄</span> <span id="retryText">Retry Connection</span>
+      </button>
+      <div class="incident-info">
+        <div>Ray ID: <span style="color:#9ca3af;">8f92a10b74ce918a</span></div>
+        <div>Error Code: <span style="color:#ef4444;">ERR_HOST_SERVER_CRASHED</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Set dynamic real-time timestamp
+    function updateTimestamp() {
+      const now = new Date();
+      const el = document.getElementById('timeDisplay');
+      if (el) el.textContent = 'UTC: ' + now.toISOString();
+    }
+    updateTimestamp();
+
+    // Fake retry simulation
+    function triggerRetry() {
+      const btn = document.getElementById('retryText');
+      const icon = document.getElementById('retryIcon');
+      btn.textContent = 'Contacting host node...';
+      icon.style.display = 'inline-block';
+      icon.style.animation = 'pulse-red 0.6s infinite';
+      
+      setTimeout(() => {
+        btn.textContent = 'Host Node Unreachable (500)';
+        icon.style.animation = 'none';
+        icon.textContent = '❌';
+        setTimeout(() => {
+          btn.textContent = 'Retry Connection';
+          icon.textContent = '🔄';
+        }, 2500);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
