@@ -700,19 +700,19 @@
       <div class="auth-icon">🛡️</div>
       <h2 class="auth-title">Admin Vault Verification</h2>
       <p class="auth-subtitle">
-        Enter Master Passcode, Godmode Crypt Key, or 6-Digit PIN to access website killswitch controls.
+        Enter authorized administrative credentials to access website management controls.
       </p>
 
       <form id="authForm" onsubmit="handleAuthSubmit(event)">
         <!-- Passcode Input Mode -->
         <div id="passcodeMode">
           <div class="auth-input-group">
-            <label class="auth-label" for="passcodeInput">Master Passcode / Key / PIN</label>
+            <label class="auth-label" for="passcodeInput">Security Passcode</label>
             <input 
               type="password" 
               id="passcodeInput" 
               class="auth-input" 
-              placeholder="Enter passcode (e.g. 889926 or pass)..." 
+              placeholder="Enter security passcode..." 
               autocomplete="current-password"
               required
             >
@@ -725,7 +725,7 @@
         <!-- PIN Keypad Quick Input Mode -->
         <div id="keypadMode" style="display: none;">
           <div class="auth-input-group">
-            <label class="auth-label">6-Digit Security PIN</label>
+            <label class="auth-label">Security PIN</label>
             <input 
               type="password" 
               id="pinDisplay" 
@@ -756,7 +756,7 @@
         </button>
 
         <div class="auth-error" id="authErrorMsg">
-          ⚠️ Invalid credentials. Please enter authorized Master Passcode or PIN.
+          ⚠️ Invalid credentials. Access denied.
         </div>
       </form>
     </section>
