@@ -984,11 +984,8 @@
       }
 
       if (MASTER_KEYS.includes(input.trim())) {
-        // Success
+        // Success for this active view
         currentAuthPasscode = input.trim();
-        sessionStorage.setItem('daksh_admin_token', 'AUTH_TOKEN_' + Date.now());
-        sessionStorage.setItem('daksh_admin_passcode', currentAuthPasscode);
-        localStorage.setItem('daksh_admin_bypass', 'true');
         failedAttempts = 0;
         errorMsg.style.display = 'none';
 
@@ -1024,11 +1021,10 @@
       refreshStatusFromCloud();
     }
 
-    // 6. Logout
+    // 6. Logout / Lock
     function adminLogout() {
-      sessionStorage.removeItem('daksh_admin_token');
-      sessionStorage.removeItem('daksh_admin_passcode');
-      localStorage.removeItem('daksh_admin_bypass');
+      currentAuthPasscode = "";
+      sessionStorage.clear();
       document.getElementById('authGate').style.display = 'block';
       document.getElementById('mainDashboard').style.display = 'none';
       document.getElementById('logoutBtn').style.display = 'none';
@@ -1105,7 +1101,7 @@
 
       // Push to Serverless Cloud API
       try {
-        const passcode = currentAuthPasscode || sessionStorage.getItem('daksh_admin_passcode') || '889926';
+        const passcode = currentAuthPasscode || '889926';
         const res = await fetch('/api/site-status', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1166,6 +1162,25 @@
       }
     }
 
+    // Background status check for badge only
+    async function fetchStatusBadgeOnly() {
+      try {
+        const res = await fetch('/api/site-status?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          const isLive = data.status === 'active';
+          const globalBadge = document.getElementById('globalStatusBadge');
+          const globalPulse = document.getElementById('globalStatusPulse');
+          const globalText = document.getElementById('globalStatusText');
+          if (globalBadge && globalPulse && globalText) {
+            globalBadge.className = isLive ? 'badge-status badge-live' : 'badge-status badge-disabled';
+            globalPulse.className = isLive ? 'pulse-dot pulse-live' : 'pulse-dot pulse-disabled';
+            globalText.textContent = isLive ? 'WEBSITE LIVE' : 'WEBSITE DISABLED';
+          }
+        }
+      } catch (e) {}
+    }
+
     // 9. Emergency Killswitch
     function emergencyKillswitch() {
       if (confirm("⚠️ EMERGENCY KILLSWITCH: Are you sure you want to instantly DISABLE the website and force the 500 error screen on all users?")) {
@@ -1178,17 +1193,23 @@
       window.open('index.html?preview=500', '_blank');
     }
 
-    // Auto-login if valid session already exists
+    // ALWAYS REQUIRE PASSWORD / PIN ON PAGE LOAD & REFRESH (Zero Auto-Login)
     window.addEventListener('DOMContentLoaded', () => {
-      const token = sessionStorage.getItem('daksh_admin_token');
-      const pass = sessionStorage.getItem('daksh_admin_passcode');
-      if (token && pass && MASTER_KEYS.includes(pass)) {
-        currentAuthPasscode = pass;
-        unlockDashboard();
-      } else {
-        // Default check
-        refreshStatusFromCloud();
+      currentAuthPasscode = "";
+      sessionStorage.clear();
+      
+      document.getElementById('authGate').style.display = 'block';
+      document.getElementById('mainDashboard').style.display = 'none';
+      document.getElementById('logoutBtn').style.display = 'none';
+      
+      const passInput = document.getElementById('passcodeInput');
+      if (passInput) {
+        passInput.value = '';
+        passInput.focus();
       }
+      clearPin();
+      
+      fetchStatusBadgeOnly();
     });
   </script>
 </body>
